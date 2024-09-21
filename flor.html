@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21 de septiembre</title>
+    <!-- Fuente personalizada desde Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-image: linear-gradient(135deg, #e91e63, #ffeb3b);
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        animation: bounceIn 2s ease-out;
+        border: 3px solid rgba(255, 255, 255, 0.8);
+        padding: 20px 10px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        min-height: 200px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+        animation: glowing 3s infinite alternate;
+        position: relative;
+        max-width: 90%; /* Limitar el ancho del contenedor */
+        box-sizing: border-box; /* Asegura que padding esté incluido en el ancho */
+      }
+
+      @keyframes glowing {
+        0% {
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+            0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        100% {
+          box-shadow: 0 0 20px rgba(255, 255, 255, 1),
+            0 0 30px rgba(255, 255, 255, 0.8);
+        }
+      }
+
+      @keyframes bounceIn {
+        0%,
+        20%,
+        40%,
+        60%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.5) 10%,
+          transparent 60%
+        );
+        transform: translateX(-50%);
+        animation: twinkle 5s infinite alternate;
+      }
+
+      @keyframes twinkle {
+        0% {
+          transform: translateX(-50%) scale(1);
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateX(-50%) scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        animation: fadeIn 2s ease-out;
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      img:hover {
+        transform: scale(1.05);
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Estilo para el texto (caption) */
+      .caption {
+        font-size: 1rem; /* Ajuste del tamaño de fuente para pantallas pequeñas */
+        font-family: "Pacifico", cursive;
+        color: #fff9c4;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        animation: heartbeat 1.5s infinite;
+        visibility: hidden;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid rgba(255, 255, 255, 0.75); /* Cursor de texto */
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* Media queries para pantallas más pequeñas */
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px 10px; /* Reducir padding en pantallas más pequeñas */
+        }
+
+        img {
+          max-width: 90%; /* Reducir el tamaño de la imagen en pantallas pequeñas */
+        }
+
+        .caption {
+          font-size: 0.9rem; /* Ajustar tamaño del texto */
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 15px 5px; /* Ajustar aún más el padding */
+        }
+
+        img {
+          max-width: 80%; /* Ajustar el tamaño de la imagen */
+        }
+
+        .caption {
+          font-size: 0.8rem; /* Reducir el tamaño de fuente para pantallas pequeñas */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="flores-amarillas.jpg" alt="Flores Amarillas" />
+      <div class="caption" id="caption">Para Pao</div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const textElement = document.getElementById("caption");
+        const text = textElement.innerHTML;
+        let index = 0;
+        textElement.innerHTML = ""; // Limpiar el texto inicialmente
+
+        function typeLetter() {
+          if (index < text.length) {
+            textElement.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeLetter, 100); // Velocidad de tipeo (100ms por letra)
+          } else {
+            textElement.style.borderRight = "none"; // Eliminar el cursor al terminar
+          }
+        }
+
+        textElement.style.visibility = "visible"; // Mostrar el texto
+
+        // Esperar 2 segundos antes de iniciar el tipeo
+        setTimeout(() => {
+          typeLetter(); // Iniciar la animación de tipeo después de 2 segundos
+        }, 2000); // 2000 ms = 2 segundos
+      });
+    </script>
+  </body>
+</html>
